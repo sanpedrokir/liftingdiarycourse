@@ -18,3 +18,8 @@ export function saveWorkout(workout: Workout): void {
   workouts.unshift(workout)
   localStorage.setItem(KEY, JSON.stringify(workouts))
 }
+
+export function deleteWorkout(id: string): void {
+  const workouts = getWorkouts().filter(w => w.id !== id)
+  localStorage.setItem(KEY, JSON.stringify(workouts))
+}
