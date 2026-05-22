@@ -23,3 +23,8 @@ export function deleteWorkout(id: string): void {
   const workouts = getWorkouts().filter(w => w.id !== id)
   localStorage.setItem(KEY, JSON.stringify(workouts))
 }
+
+export function updateWorkout(workout: Workout): void {
+  const workouts = getWorkouts().map(w => (w.id === workout.id ? workout : w))
+  localStorage.setItem(KEY, JSON.stringify(workouts))
+}

@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { getWorkouts, deleteWorkout, type Workout } from '@/lib/storage'
 
 function formatDate(dateStr: string) {
@@ -48,12 +49,20 @@ export default function WorkoutHistory() {
             <h2 className="font-semibold text-zinc-900 dark:text-zinc-50">
               {formatDate(workout.date)}
             </h2>
-            <button
-              onClick={() => handleDelete(workout.id)}
-              className="text-xs text-zinc-400 hover:text-red-500 transition-colors"
-            >
-              Delete
-            </button>
+            <div className="flex gap-3">
+              <Link
+                href={`/history/${workout.id}`}
+                className="text-xs text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors"
+              >
+                Edit
+              </Link>
+              <button
+                onClick={() => handleDelete(workout.id)}
+                className="text-xs text-zinc-400 hover:text-red-500 transition-colors"
+              >
+                Delete
+              </button>
+            </div>
           </div>
 
           <div className="space-y-3">
